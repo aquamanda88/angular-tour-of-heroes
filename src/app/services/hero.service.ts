@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Hero } from '../model/hero.model';
-import { HEROES } from '../mock-heroes';
+
 import { Observable, of } from 'rxjs';
-import { MessageService } from './message.service';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  constructor(private messageService: MessageService) { }
+  private heroesUrl = 'api/heroes';  // URL to web api
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+  constructor(private http: HttpClient) { }
+
+  /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
-    const heroes = of(HEROES);
-    this.messageService.add('HeroService: fetched heroes');
-    return heroes;
+    return this.http.get<Hero[]>(this.heroesUrl)
   }
 
-  getHero(id: number): Observable<Hero> {
-    // For now, assume that a hero with the specified `id` always exists.
-    // Error handling will be added in the next step of the tutorial.
-    const hero = HEROES.find(h => h.id === id)!;
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-    return of(hero);
-  }
+  // getHero(id: number): Observable<Hero> {
+  //   // For now, assume that a hero with the specified `id` always exists.
+  //   // Error handling will be added in the next step of the tutorial.
+  //   const hero = HEROES.find(h => h.id === id)!;
+  //   this.messageService.add(`HeroService: fetched hero id=${id}`);
+  //   return of(hero);
+  // }
 }
