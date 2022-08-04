@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
-<nav>
-  <a mat-stroked-button color="primary" routerLink="/dashboard">Dashboard</a>
-  <a mat-stroked-button color="primary" routerLink="/heroes">Heroes</a>
-</nav>
+<ul class="navbar">
+  <li><button mat-button color="primary" type="button" value="Dashboard" routerLink="/dashboard">Dashboard</button></li>
+  <li><button mat-button color="primary" type="button" value="Heroes" routerLink="/heroes">Heroes</button></li>
+</ul>
 <router-outlet></router-outlet>
