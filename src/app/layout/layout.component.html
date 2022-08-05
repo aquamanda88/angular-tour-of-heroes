@@ -1,0 +1,15 @@
+<div class="container pb-4">
+  <h1 class="mt-4">{{title}}</h1>
+  <ul class="d-flex justify-content-center">
+    <li>
+      <button class="btn btn-outline-secondary me-2" type="button" value="Home" routerLink="/">Home</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-secondary me-2" type="button" value="Dashboard" routerLink="/dashboard">Dashboard</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-secondary" type="button" value="Heroes" routerLink="/heroes">Heroes</button>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>

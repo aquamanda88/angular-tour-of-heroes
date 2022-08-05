@@ -1,29 +1,26 @@
-<mat-card>
-  <mat-card-title>Add Heroes</mat-card-title>
-  <form>
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label for="new-hero">New Hero's name: </mat-label>
-      <input matInput id="new-hero" #heroName>
-    </mat-form-field>
-  </form>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button mat-button color="primary" type="button" class="add-button"
-  (click)="add(heroName.value); heroName.value=''">Save</button>
-</mat-card>
-
-<mat-list *ngFor="let hero of heroes" class="heroesList">
-  <mat-list-item>
-    <div class="btnList">
-      <a mat-button routerLink="/detail/{{hero.id}}">
-        <span class="heroId">{{hero.id}}</span>
-        <span class="heroName">{{hero.name}}</span>
-      </a>
-      <button type="button" mat-mini-fab color="warn"
-        aria-label="Example icon button with a filter list icon"
-        (click)="delete(hero)">X</button>
+<div class="card mb-4">
+  <h3 class="card-header mb-0">Add Heroes</h3>
+  <div class="card-body">
+    <div class="mb-3">
+      <label class="form-label" for="new-hero">Hero name: </label>
+      <input class="form-control" id="new-hero" #heroName />
     </div>
-    <mat-divider></mat-divider>
-  </mat-list-item>
-</mat-list>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button class="btn btn-secondary" type="button"
+    (click)="add(heroName.value); heroName.value=''">Save</button>
+  </div>
+</div>
+
+<ul class="list-group" *ngFor="let hero of heroes">
+  <li class="list-group-item mb-2">
+    <div class="d-flex justify-content-between align-items-center">
+      <button type="button" class="itemContent btn" routerLink="/heroes/detail/{{hero.id}}">
+        <span class="bg-secondary text-white rounded-circle p-2 me-2">{{hero.id}}</span>
+        <span class="heroName">{{hero.name}}</span>
+      </button>
+      <button type="button" (click)="delete(hero)" class="btn-close" aria-label="Close"></button>
+    </div>
+  </li>
+</ul>
 
 

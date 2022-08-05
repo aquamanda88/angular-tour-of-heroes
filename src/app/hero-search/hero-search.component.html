@@ -1,12 +1,14 @@
-<div id="search-component">
-  <label for="search-box">Hero Search</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-  <ul class="search-result">
-    <li *ngFor="let hero of heroes$ | async" >
-      <a routerLink="/detail/{{hero.id}}">
-        {{hero.name}}
-      </a>
-    </li>
-  </ul>
-</div>
+<nav class="navbar navbar-light bg-light mb-4">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <input #searchBox class="form-control me-2" type="search hero" placeholder="Search" aria-label="Search" (input)="search(searchBox.value)">
+    </form>
+  </div>
+</nav>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let hero of heroes$ | async">
+    <a class="searchResult text-secondary" routerLink="/detail/{{hero.id}}">
+      {{hero.name}}
+    </a>
+  </li>
+</ul>
