@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Hero } from '../model/hero.model';
 import { HeroService } from '../services/hero.service';
 
@@ -12,18 +13,20 @@ export class HeroesComponent implements OnInit {
 
   selectedHero?: Hero;
 
-  constructor(private heroService: HeroService) { }
+  form: FormGroup = this.fb.group({
+    heroName: this.fb.control('', { validators: [] }),
+  });
+
+  constructor(private heroService: HeroService,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getHeroes();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
-  }
-
-  add(name: string): void {
-    name = name.trim();
+  formSubmit(){
+    const name = this.form.value.heroName;
+    // name.trim();
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
@@ -31,6 +34,10 @@ export class HeroesComponent implements OnInit {
           this.heroes.push(hero);
         }
       });
+  }
+
+  getHeroes(): void {
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
   delete(hero: Hero): void {

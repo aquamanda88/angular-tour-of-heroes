@@ -1,13 +1,14 @@
 <div class="card mb-4">
   <h3 class="card-header mb-0">Add Heroes</h3>
   <div class="card-body">
-    <div class="mb-3">
-      <label class="form-label" for="new-hero">Hero name: </label>
-      <input class="form-control" id="new-hero" #heroName />
-    </div>
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button class="btn btn-secondary" type="button"
-    (click)="add(heroName.value); heroName.value=''">Save</button>
+    <form [formGroup]="form" (ngSubmit)="formSubmit()">
+      <div class="mb-3">
+        <label class="form-label" for="new-hero">Hero name: </label>
+        <input class="form-control" id="new-hero" #heroName formControlName="heroName" />
+      </div>
+      <!-- (click) passes input value to add() and then clears the input -->
+      <button class="btn btn-secondary" type="submit">Save</button>
+    </form>
   </div>
 </div>
 

@@ -1,8 +1,6 @@
 <nav class="navbar navbar-light bg-light mb-4">
   <div class="container-fluid">
-    <form class="d-flex">
-      <input #searchBox class="form-control me-2" type="search hero" placeholder="Search" aria-label="Search" (input)="search(searchBox.value)">
-    </form>
+    <input #searchBox class="form-control me-2" type="text" placeholder="Search" aria-label="Search" (input)="search(searchBox.value)">
   </div>
 </nav>
 <ul class="list-group">
